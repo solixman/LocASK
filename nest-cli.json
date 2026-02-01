@@ -19,24 +19,6 @@
         "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
       }
     },
-    "orders": {
-      "type": "application",
-      "root": "apps/orders",
-      "entryFile": "main",
-      "sourceRoot": "apps/orders/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/orders/tsconfig.app.json"
-      }
-    },
-    "payment": {
-      "type": "application",
-      "root": "apps/payment",
-      "entryFile": "main",
-      "sourceRoot": "apps/payment/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/payment/tsconfig.app.json"
-      }
-    },
     "auth": {
       "type": "application",
       "root": "apps/auth",
@@ -44,6 +26,15 @@
       "sourceRoot": "apps/auth/src",
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
+    "questions": {
+      "type": "application",
+      "root": "apps/questions",
+      "entryFile": "main",
+      "sourceRoot": "apps/questions/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/questions/tsconfig.app.json"
       }
     }
   }

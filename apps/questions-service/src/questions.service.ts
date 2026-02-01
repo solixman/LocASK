@@ -105,6 +105,14 @@ export class QuestionsService {
       .sort((a, b) => a.distance - b.distance);
   }
 
-
-
+  async checkQuestion(data: { questionId: string }) {
+    console.log('Received check question data:', data);
+    if (!data || !data.questionId) {
+      return false;
+    }
+    const question = await prisma.question.findUnique({
+      where: { id: data.questionId },
+    });
+    return question !== null;
+  }
 }

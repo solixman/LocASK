@@ -1,5 +1,11 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+
+interface AnswerPayload {
+    content: string;
+    userId: string;
+    questionId?: string;
+}
 
 @Controller('answers')
 export class AnswersController {
@@ -8,5 +14,11 @@ export class AnswersController {
     @Get('test')
     test(){
         return  this.answersClient.send('test', {});
+    }
+
+    @Post()
+    createAnswer(@Query() query:{questionId:string} ,@Body() data: AnswerPayload){
+        data.questionId = query.questionId;
+        return this.answersClient.send('create_answer', data);
     }
 }

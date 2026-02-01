@@ -5,7 +5,7 @@ import { CreateQuestionDto, GetQuestionsDto, ToggleLikeDto } from './dto/questio
 
 @Controller()
 export class QuestionsController {
-  constructor(private readonly questionsService: QuestionsService) {}
+  constructor(private readonly questionsService: QuestionsService) { }
 
   @MessagePattern('create_question')
   createQuestion(@Payload() data: CreateQuestionDto) {
@@ -25,5 +25,10 @@ export class QuestionsController {
   @MessagePattern('toggle_like')
   toggleLike(@Payload() data: ToggleLikeDto) {
     return this.questionsService.toggleLike(data);
+  }
+
+  @MessagePattern('check_question')
+  checkQuestion(@Payload() data: { questionId: string }) {
+    return this.questionsService.checkQuestion(data);
   }
 }

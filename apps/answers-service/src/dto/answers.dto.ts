@@ -1,6 +1,6 @@
 
 export class AnswerDto {
-    content: String;
-    userId: String;
-    questionId: String;
+    content: string;
+    userId: string;
+    questionId: string;     
 }

@@ -1,0 +1,22 @@
+﻿npx : Prisma schema loaded 
+from apps\answers-service\pr
+isma\schema.prisma.
+Au caractère Ligne:1 : 1
++ npx prisma db push --schem
+a=apps/answers-service/prism
+a/schema.prisma ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (Prism  
+  a schema l...\schema.pr   
+ isma.:String) [], Remot    
+eException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+Error: The datasource.url 
+property is required in 
+your Prisma config file 
+when using prisma db push.

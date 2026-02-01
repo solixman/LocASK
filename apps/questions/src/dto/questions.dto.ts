@@ -9,6 +9,7 @@ export class CreateQuestionDto {
 export class GetQuestionsDto {
   latitude: number;
   longitude: number;
+  userId?: string;
 }
 
 export class ToggleLikeDto {

@@ -17,6 +17,11 @@ export class QuestionsController {
     return this.questionsService.getQuestions(data);
   }
 
+  @MessagePattern('get_liked_questions')
+  getLikedQuestions(@Payload() data: GetQuestionsDto) {
+    return this.questionsService.getLikedQuestions(data);
+  }
+
   @MessagePattern('toggle_like')
   toggleLike(@Payload() data: ToggleLikeDto) {
     return this.questionsService.toggleLike(data);

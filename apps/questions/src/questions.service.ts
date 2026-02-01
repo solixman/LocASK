@@ -24,21 +24,29 @@ export class QuestionsService {
     });
 
     if (query.latitude && query.longitude) {
-      return questions
-        .map((q) => ({
-          ...q,
-          distance: this.calculateDistance(
-            query.latitude,
-            query.longitude,
-            q.latitude,
-            q.longitude,
-          ),
-          likesCount: q.likes.length,
-        }))
-        .sort((a, b) => a.distance - b.distance);
+      return this.sort(questions, { latitude: query.latitude, longitude: query.longitude })
     }
-
     return questions.map(q => ({ ...q, likesCount: q.likes.length }));
+  }
+
+  async getLikedQuestions(query: GetQuestionsDto) {
+    const questions = await prisma.question.findMany({
+      include: {
+        likes: true,
+      },
+      where: {
+        likes: {
+          some: {
+            userId: query.userId
+          }
+        }
+      }
+    });
+    if (query.latitude && query.longitude) {
+      return this.sort(questions, { latitude: query.latitude, longitude: query.longitude })
+    }
+    return questions.map(q => ({ ...q, likesCount: q.likes.length }));
+
   }
 
   async toggleLike(data: ToggleLikeDto) {
@@ -66,15 +74,15 @@ export class QuestionsService {
   }
 
   private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; 
+    const R = 6371;
     const dLat = this.toRad(lat2 - lat1);
     const dLon = this.toRad(lon2 - lon1);
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(this.toRad(lat1)) *
-        Math.cos(this.toRad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(this.toRad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
@@ -82,4 +90,21 @@ export class QuestionsService {
   private toRad(value: number): number {
     return (value * Math.PI) / 180;
   }
+
+  private sort(questions, loc) {
+    return questions.map((q) => ({
+      ...q,
+      distance: this.calculateDistance(
+        Number(loc.latitude),
+        Number(loc.longitude),
+        q.latitude,
+        q.longitude,
+      ),
+      likesCount: q.likes.length,
+    }))
+      .sort((a, b) => a.distance - b.distance);
+  }
+
+
+
 }

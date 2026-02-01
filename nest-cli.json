@@ -28,13 +28,22 @@
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
     },
-    "questions": {
+    "questions-service": {
       "type": "application",
-      "root": "apps/questions",
+      "root": "apps/questions-service",
       "entryFile": "main",
-      "sourceRoot": "apps/questions/src",
+      "sourceRoot": "apps/questions-service/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/questions/tsconfig.app.json"
+        "tsConfigPath": "apps/questions-service/tsconfig.app.json"
+      }
+    },
+    "answers-service": {
+      "type": "application",
+      "root": "apps/answers-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/answers-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/answers-service/tsconfig.app.json"
       }
     }
   }

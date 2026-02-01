@@ -4,6 +4,7 @@ import { ApiGatewayService } from './api-gateway.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthController } from './auth/auth.controller';
 import { QuestionsController } from './questions/questions.controller';
+import { AnswersController } from './answers/answers.controller';
 
 @Module({
   imports: [ClientsModule.register([
@@ -23,8 +24,16 @@ import { QuestionsController } from './questions/questions.controller';
           port: 4002,
         },
       },
+      {
+        name: "ANSWERS_SERVICE",
+        transport: Transport.TCP,
+        options: {
+          host: "127.0.0.1",
+          port: 4003,
+        },
+      },
   ])],
-  controllers: [ApiGatewayController, AuthController,QuestionsController],
+  controllers: [ApiGatewayController, AuthController,QuestionsController, AnswersController],
   providers: [ApiGatewayService],
 })
 export class ApiGatewayModule {}

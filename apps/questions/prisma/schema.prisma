@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -12,7 +12,8 @@ model Question {
   title     String
   content   String
   userId    String
-  location  Json
+  latitude  Float
+  longitude Float 
   createdAt DateTime @default(now())
   likes     Like[]
 }

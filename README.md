@@ -100,3 +100,12 @@ npm run start:dev auth
 ```bash
 npm run start auth 
 ```
+
+
+
+
+
+
+
+# I got the calculate distance with lat & lon logic from:
+.https://www.movable-type.co.uk/scripts/latlong.html

@@ -16,8 +16,8 @@ datasource db {
 model Answer {
   id         Int      @id @default(autoincrement())
   content    String
-  userId     Int
-  questionId Int      // reference to the question in Questions service
+  userId     String
+  questionId String  
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }

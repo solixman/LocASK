@@ -17,4 +17,10 @@ export class AnswersServiceController {
     console.log('Received create answer datain the answers service controller', data);
     return this.answersServiceService.createAnswer(data);
   }
+
+  @MessagePattern('get_answers')
+  getAnswers(data: { questionId: string }) {
+    console.log('Received get answers datain the answers service controller', data);
+    return this.answersServiceService.getAnswers({ questionId: data.questionId });
+  }
 }

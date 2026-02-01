@@ -110,9 +110,13 @@ export class QuestionsService {
     if (!data || !data.questionId) {
       return false;
     }
+    
     const question = await prisma.question.findUnique({
       where: { id: data.questionId },
     });
     return question !== null;
   }
 }
+
+//Received check question data: { questionId: 'bfd32e4f-060e-4488-9006-db50c894143e' }
+//Received check question data: { questionId: '3f6e5174-33a2-488c-b132-ff1c6cd5c6c6' }

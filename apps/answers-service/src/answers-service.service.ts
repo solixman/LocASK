@@ -21,8 +21,6 @@ export class AnswersServiceService {
       const res = await firstValueFrom(
         this.questionsService.send('check_question', { questionId: data.questionId }),
       );
-      console.log('Received response from the questions service:', res);
-      console.log('Received response from the questions service:', data);
 
       if (res) {
         return prisma.answer.create({
@@ -39,4 +37,32 @@ export class AnswersServiceService {
       return { message: 'Error verifying question existence' };
     }
   }
+
+  async getAnswers(data: { questionId: string }) {
+    console.log('data heeeeeeeeeeeeeeeereeeeeeeeeeeeeeeeeeeeee',data);
+
+    if (!data.questionId) {
+      return { message: 'Missing required fields: questionId '}
+    }
+
+    try {
+      const res = await firstValueFrom(
+        this.questionsService.send('check_question', { questionId: data.questionId }),
+      );
+      console.log('res',res);
+      if (res) {
+        return prisma.answer.findMany({
+          where: {
+            questionId: data.questionId,
+          },
+        });
+      }
+      return { message: 'Question not found' };
+    } catch (error) {
+      console.error('Error checking question existence:', error);
+      return { message: 'Error verifying question existence' };
+    }
+    }
+     
+
 }

@@ -12,6 +12,10 @@ Before starting, ensure you have the following installed:
 
 1.  **Clone the repository** (if you haven't already).
 
+    ```
+    git clone https://github.com/solixman/google-Oauth-nest-microservices.git
+    ```
+
 2.  **Install dependencies**:
     ```bash
     npm install
@@ -65,14 +69,16 @@ Before starting, ensure you have the following installed:
     # Create tables and run migrations
     ```
     npx prisma migrate dev --name init --schema=apps/auth/prisma/schema.prisma
-    ``` 
     # note that the db should be already reated and empty to migrate and the scheema is for a specific project so please modify it as needed  
      
+    #!!!!! the prisma version should be 7.3 the 6.19.2 will not work !!!!!
+    #!!!!! the prisma version should be 7.3 the 6.19.2 will not work !!!!!
+    #!!!!! the prisma version should be 7.3 the 6.19.2 will not work !!!!!
     
 
 ## Running the Application
 
-This project consists of multiple services. You will need to run them in separate terminals.
+This project consists of multiple services. You will need to run them in separate terminals and both from root.
 
 **1. API Gateway** (Main Entry Point)
 ```bash
@@ -80,7 +86,7 @@ npm run build api-gateway
 
 npm run start:dev api-gateway
 ```
-The gateway typically runs on `http://localhost:3000`.
+The gateway typically runs on `http://localhost:4000`.
 
 **2. Auth Service**
 ```bash

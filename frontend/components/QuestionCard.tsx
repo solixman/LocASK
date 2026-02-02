@@ -83,7 +83,7 @@ export default function QuestionCard({ question, userId }: QuestionCardProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#18191a] rounded-[2.5rem] p-7 sm:p-9 border border-slate-100 dark:border-white/5 shadow-sm transition-all hover:shadow-xl hover:shadow-purple-500/5 group flex flex-col h-full">
+    <div className="bg-white dark:bg-[#18191a] rounded-[2.5rem] p-7 sm:p-9 border border-slate-100 dark:border-white/5 shadow-sm transition-all hover:shadow-xl hover:shadow-purple-500/5 group flex flex-col">
       <div className="flex justify-between items-start mb-6">
         <div className="flex gap-4 items-center">
             <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 flex items-center justify-center text-xl shadow-inner font-black text-slate-300 dark:text-slate-600">

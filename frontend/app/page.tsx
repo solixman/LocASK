@@ -80,6 +80,7 @@ export default function Home() {
         user={user} 
         onLoginClick={() => setAuthMode('login')} 
         onLogout={handleLogout}
+        onAskClick={() => user ? setShowMobileForm(true) : setAuthMode('login')}
       />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
@@ -107,24 +108,6 @@ export default function Home() {
                 Saved
               </button>
             </div>
-
-            {/* Desktop Ask Form */}
-            <div className="hidden lg:block mt-6">
-              {user ? (
-                <AskQuestionForm userId={user.id} location={location} onSuccess={fetchQuestions} />
-              ) : (
-                <div className="bg-gradient-to-br from-purple-600 to-indigo-700 rounded-[2rem] p-8 text-white shadow-xl shadow-purple-500/10">
-                  <h3 className="text-xl font-black mb-3 italic">Be the Pulse</h3>
-                  <p className="text-sm opacity-80 mb-6 font-medium">Join the community to ask questions and help locals.</p>
-                  <button 
-                    onClick={() => setAuthMode('register')}
-                    className="w-full bg-white text-purple-700 font-black py-4 rounded-2xl transition-all hover:shadow-lg active:scale-95 text-xs uppercase tracking-widest"
-                  >
-                    Join Now
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
         </div>
 
@@ -138,15 +121,6 @@ export default function Home() {
               <div className="h-1.5 w-12 bg-purple-600 rounded-full mt-2"></div>
             </div>
             
-            {/* Mobile Ask Trigger */}
-            <button 
-              onClick={() => user ? setShowMobileForm(true) : setAuthMode('login')}
-              className="lg:hidden w-12 h-12 bg-purple-600 text-white rounded-2xl flex items-center justify-center shadow-lg active:scale-95"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-            </button>
           </div>
 
           {loading ? (
@@ -156,7 +130,7 @@ export default function Home() {
               ))}
             </div>
           ) : questions.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-start">
               {questions.map((q: any) => (
                 <QuestionCard key={q.id} question={q} userId={user?.id} />
               ))}
@@ -173,17 +147,16 @@ export default function Home() {
 
       {/* Mobile Form Modal */}
       {showMobileForm && user && (
-        <div className="fixed inset-0 z-[100] lg:hidden animate-slide-up bg-white/50 dark:bg-black/50 backdrop-blur-md p-4 flex flex-col justify-end">
-            <div className="max-w-md mx-auto w-full">
+        <div className="fixed inset-0 z-[100] animate-slide-up bg-white/50 dark:bg-black/80 backdrop-blur-md p-4 flex items-center justify-center">
+            <div className="max-w-md w-full">
                 <div className="flex justify-end mb-4">
-                    <button onClick={() => setShowMobileForm(false)} className="w-10 h-10 bg-white dark:bg-[#18191a] rounded-full flex items-center justify-center shadow-lg">
+                    <button onClick={() => setShowMobileForm(false)} className="w-12 h-12 bg-white dark:bg-[#18191a] rounded-2xl flex items-center justify-center shadow-2xl border border-slate-100 dark:border-white/5">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
                 <AskQuestionForm userId={user.id} location={location} onSuccess={() => { fetchQuestions(); setShowMobileForm(false); }} />
-                <div className="h-4"></div>
             </div>
         </div>
       )}
